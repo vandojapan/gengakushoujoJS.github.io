@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>RM2k Maniacs Port Template</title>
+<style>html,body{margin:0;padding:0;background:#111;color:#ddd;font-family:sans-serif;}
+#wrap{display:flex;gap:12px;padding:12px;}#game{image-rendering:pixelated;background:#223;border:1px solid #445;}
+#log{flex:1;max-height:92vh;overflow:auto;font-size:12px;background:#0b0b10;border:1px solid #333;padding:8px;}
+.tag{display:inline-block;padding:0 4px;border-radius:3px;background:#444;margin-right:4px;font-size:11px;}
+</style></head>
+<body><div id="wrap"><canvas id="game" width="640" height="480"></canvas><div id="log">
+<div><span class="tag">Hint</span> このテンプレートは <b>XML→JS</b> の移植用です。assets/data に Map*.xml / RPG_RT.xml を置けば読み込みできます。</div>
+<hr/><pre id="console"></pre></div></div>
+<script src="js/config.js"></script>
+<script src="js/dataLoader.js"></script>
+<script src="js/map.js"></script>
+<script src="js/player.js"></script>
+<script src="js/eventEngine.js"></script>
+<script src="js/main.js"></script>
+</body></html>

@@ -1,0 +1,7 @@
+import{CONFIG,KEY}from"./config.js";export class Player{constructor(x=32,y=0){this.x=x;this.y=y;this.vx=0;this.vy=0;this.w=14;this.h=14;this.onGround=false;this.dir=1;}
+update(keys,map){const l=KEY.LEFT.some(k=>keys[k]),r=KEY.RIGHT.some(k=>keys[k]),j=KEY.JUMP.some(k=>keys[k]);if(r){this.vx=CONFIG.moveSpeed;this.dir=1;}else if(l){this.vx=-CONFIG.moveSpeed;this.dir=-1;}else this.vx=0;
+this.vy+=CONFIG.gravity;this.x+=this.vx;let c=map.collideAABB(this.aabb());if(c.hitLeft&&this.vx<0){this.x=Math.floor(this.x/CONFIG.tileSize)*CONFIG.tileSize+1;this.vx=0;}
+if(c.hitRight&&this.vx>0){this.x=Math.ceil((this.x+this.w)/CONFIG.tileSize)*CONFIG.tileSize-this.w-1;this.vx=0;}this.y+=this.vy;c=map.collideAABB(this.aabb());
+if(c.hitBottom&&this.vy>0){this.y=Math.floor((this.y+this.h)/CONFIG.tileSize)*CONFIG.tileSize-this.h;this.vy=0;this.onGround=true;}else this.onGround=false;
+if(c.hitTop&&this.vy<0){this.y=Math.ceil(this.y/CONFIG.tileSize)*CONFIG.tileSize+1;this.vy=0;}if(j&&this.onGround){this.vy=CONFIG.jumpSpeed;this.onGround=false;}}
+aabb(){return{x:this.x,y:this.y,w:this.w,h:this.h};}draw(ctx,cx){ctx.fillStyle="#ffcc88";ctx.fillRect(this.x-cx,this.y,this.w,this.h);ctx.fillStyle="#000";ctx.fillRect(this.x-cx+(this.dir>0?9:3),this.y+4,2,2);}}

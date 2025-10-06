@@ -1,0 +1,5 @@
+import{CONFIG}from"./config.js";import{tileColor}from"./dataLoader.js";export class TileMap{constructor(d){this.width=d.width;this.height=d.height;this.tiles=d.tiles;}
+tileAtPixel(px,py){const ts=CONFIG.tileSize,x=Math.floor(px/ts),y=Math.floor(py/ts);if(x<0||y<0||x>=this.width||y>=this.height)return 0;return this.tiles[y][x]||0;}
+collideAABB(a){const{x,y,w,h}=a,ts=CONFIG.tileSize,p=[[x,y+h],[x+w,y+h],[x,y],[x+w,y],[x,y+h/2],[x+w,y+h/2]];let b=false,t=false,l=false,r=false;
+for(const[px,py]of p){const id=this.tileAtPixel(px,py);if(id!==0){if(py>=Math.floor((y+h)/ts)*ts)b=true;if(py<=Math.floor(y/ts)*ts+1)t=true;if(px<=Math.floor(x/ts)*ts+1)l=true;if(px>=Math.ceil((x+w)/ts)*ts-1)r=true;}}return{hitBottom:b,hitTop:t,hitLeft:l,hitRight:r};}
+draw(ctx,cx){const ts=CONFIG.tileSize,cols=Math.ceil(ctx.canvas.width/ts)+2,sc=Math.floor(cx/ts);for(let y=0;y<this.height;y++){for(let x=sc;x<sc+cols;x++){if(x<0||x>=this.width)continue;const id=this.tiles[y][x],c=tileColor(id);if(!c)continue;ctx.fillStyle=c;ctx.fillRect(x*ts-cx,y*ts,ts,ts);}}}}

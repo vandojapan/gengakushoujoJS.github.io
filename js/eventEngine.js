@@ -1,0 +1,5 @@
+function log(...a){const e=document.getElementById("console");if(e){e.textContent+=a.join(" ")+"\n";e.scrollTop=e.scrollHeight;}console.log(...a);}
+export const Maniacs={11070:(...p)=>log("[Maniacs]11070 ScreenEffectEx",p),11330:(...p)=>log("[Maniacs]11330 ShowPictureEx",p),11410:(...p)=>log("[Maniacs]11410 BlendPicture",p),
+11510:(...p)=>log("[Maniacs]11510 PlayBGMEx",p),11550:(...p)=>log("[Maniacs]11550 PlaySEEx",p),11610:(...p)=>log("[Maniacs]11610 PictureMoveEx",p),
+12010:(...p)=>log("[Maniacs]12010 VariableOperationEx",p),22010:(...p)=>log("[Maniacs]22010 ThreadStart",p),22011:(...p)=>log("[Maniacs]22011 ThreadEnd",p),
+12410:(...p)=>log("[Maniacs]12410 LabelDefineEx",p),22410:(...p)=>log("[Maniacs]22410 LabelCallEx",p)};export function executeEventCommand(c){const f=Maniacs[c.code];if(f)return f(c.parameters);}
