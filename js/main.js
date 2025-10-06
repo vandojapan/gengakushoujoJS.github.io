@@ -6,3 +6,4 @@ map=new TileMap(data);log("[OK]",f,"("+data.width+"x"+data.height+")");}else log
 function upd(){player.update(keys,map);camX=Math.max(0,Math.floor(player.x-canvas.width/2));camX=Math.min(camX,map.width*CONFIG.tileSize-canvas.width);}
 function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle="#102030";ctx.fillRect(0,0,canvas.width,canvas.height);map.draw(ctx,camX);player.draw(ctx,camX);}
 (function loop(){upd();draw();requestAnimationFrame(loop);})();
+const renderer = new Renderer(document.getElementById("game"));
